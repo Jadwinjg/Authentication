@@ -5,14 +5,23 @@ import cors from 'cors';
 const app = express();
 app.use(cors());
 app.use(express.json());
-const port = 8081;
+const port = process.env.PORT || 8081;
 
+// const db = mysql.createConnection({
+//   host: "localhost",
+//   user: "root",
+//   password: "",
+//   database: "signup",
+//   port: 3307
+// });
+
+// use this for deploy
 const db = mysql.createConnection({
-  host: "localhost",
-  user: "root",
-  password: "",
-  database: "signup",
-  port: 3307
+  host: process.env.DB_HOST,
+  user: process.env.DB_USER,
+  password: process.env.DB_PASS,
+  database: process.env.DB_NAME,
+  port: process.env.DB_PORT
 });
 
 // Register new user
